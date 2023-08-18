@@ -2,15 +2,19 @@
 <html lang="en">
     <head>
         <title>Private Notes</title>
-        <link rel="stylesheet" href="design.css?v=1.1">
+        <link rel="stylesheet" href="design.css?v=1.2">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
+        <nav class="top">
+        <button id="backup">Backup</button>
+        <input id="restore" type="file" name="file" accept="*.json">
+        </nav>
         <div id="parent" class="parent">
-            <div id="todo" class="child1"><p>Todo</p><button id="addTodo">+</button></div>
-            <div id="doing" class="child2"><p>Doing</p><button id="addDoing">+</button></div>
-            <div id="done" class="child3"><p>Done</p><button id="addDone">+</button></div>
+            <div id="todo" class="child1"><p>Todo</p><button id="addTodo" class="btn">+</button></div>
+            <div id="doing" class="child2"><p>Doing</p><button id="addDoing" class="btn">+</button></div>
+            <div id="done" class="child3"><p>Done</p><button id="addDone" class="btn">+</button></div>
         </div>
-        <script src="app.js?v=1.1" type="text/javascript"></script>
+        <script src="app.js?v=1.2" type="text/javascript"></script>
     </body>
 </html>

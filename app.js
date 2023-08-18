@@ -12,6 +12,8 @@ let done = document.getElementById("done");
 let addTodo = document.getElementById("addTodo");
 let addDoing = document.getElementById("addDoing");
 let addDone = document.getElementById("addDone");
+let backup = document.getElementById("backup");
+let restore = document.getElementById("restore");
 
 document.addEventListener("click",(e) =>
 {
@@ -156,3 +158,47 @@ function rm(target)
 
     target.remove();
 }
+
+backup.addEventListener("click",() =>
+{
+    const dataJson = JSON.stringify(getDB);
+    const blob = new Blob([dataJson], { type: "application/json" });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "backup.json";
+    a.click();
+    URL.revokeObjectURL(url);
+});
+
+restore.addEventListener("change",() =>
+{
+	let file = restore.files[0];
+
+    if(file)
+    {
+        let reader = new FileReader();
+        
+        reader.addEventListener("load",(e) =>
+        {
+            try
+            {
+                JSON.parse(e.target.result).forEach((event) =>
+                {
+                    getDB.push(event);
+
+                    localStorage.setItem(databaseName,JSON.stringify(getDB));
+                });
+            }
+            catch(error)
+            {
+                console.log("Error loading JSON file.");
+            }
+        });
+        
+        reader.readAsText(file);
+    }
+
+    location.reload();
+});
