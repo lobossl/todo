@@ -4,6 +4,7 @@
 
 body
 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     background-color: #eee;
     padding:0;
     margin:0;
@@ -54,6 +55,11 @@ body
     padding:15px;
 }
 
+.newDiv:hover
+{
+    border:1px solid #c7a6a6;
+    cursor: pointer;
+}
 .newDiv
 {
     border:1px solid #eee;
@@ -64,17 +70,23 @@ body
     outline:none;
     color:#999;
     word-break:break-word;
+    font-size:12px;
 }
 
+button:hover
+{
+    color:#c7a6a6;
+}
 button
 {
+    font-weight: 900;
     background-color:#fff;
     border:1px solid #eee;
     border-radius:5px;
     padding:15px;
-    color:#999;
+    color:#ccc;
     margin:15px;
-    text-align:left;
+    text-align:center;
     outline:none;
     width:50%;
 }

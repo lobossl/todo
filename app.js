@@ -2,14 +2,13 @@
     https://github.com/lobossl
 */
 
-let databaseName = "todolist"; //EDIT
+let databaseName = "todolist";
+
 let getDB = localStorage.getItem(databaseName) ? JSON.parse(localStorage.getItem(databaseName)) : []
 
-//divs
 let todo = document.getElementById("todo");
 let doing = document.getElementById("doing");
 let done = document.getElementById("done");
-//buttons
 let addTodo = document.getElementById("addTodo");
 let addDoing = document.getElementById("addDoing");
 let addDone = document.getElementById("addDone");
