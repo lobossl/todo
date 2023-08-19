@@ -1,5 +1,5 @@
 /*
-    https://github.com/lobossl
+    https://github.com/lobossl/todo
 */
 
 let ldbName = "todo"
