@@ -2,203 +2,141 @@
     https://github.com/lobossl
 */
 
-let databaseName = "todolist";
+let ldbName = "todo"
 
-let getDB = localStorage.getItem(databaseName) ? JSON.parse(localStorage.getItem(databaseName)) : []
+let todo = document.getElementById("todo")
+let done = document.getElementById("done")
+let add = document.getElementById("add")
+let remove = document.getElementById("remove")
 
-let todo = document.getElementById("todo");
-let doing = document.getElementById("doing");
-let done = document.getElementById("done");
-let addTodo = document.getElementById("addTodo");
-let addDoing = document.getElementById("addDoing");
-let addDone = document.getElementById("addDone");
-let backup = document.getElementById("backup");
-let restore = document.getElementById("restore");
+let test = JSON.parse(localStorage.getItem(ldbName)) || []
 
-document.addEventListener("click",(e) =>
+function setItems(e)
 {
-    if(e.target.id == "addTodo")
+    if(test === null)
     {
-        newDiv = document.createElement("p");
-        newDiv.className = "newDiv";
-        newDiv.id = getDB.length;
-        newDiv.contentEditable = "true";
-        todo.appendChild(newDiv);
+        test = []
 
-        getDB.push(
-            {
-                title: "todo",
-                text: "",
-                index: getDB.length,
-                delete: false
-            }
-        );
+        test.push(e)
 
-        localStorage.setItem(databaseName,JSON.stringify(getDB));
+        localStorage.setItem(ldbName,JSON.stringify(test))
     }
-
-    if(e.target.id == "addDoing")
+    else
     {
-        newDiv = document.createElement("p");
-        newDiv.className = "newDiv";
-        newDiv.id = getDB.length;
-        newDiv.contentEditable = "true";
-        doing.appendChild(newDiv);
+        test.push(e)
 
-        
-        getDB.push(
-            {
-                title: "doing",
-                text: "",
-                index: getDB.length,
-                delete: false
-            }
-        );
-        
-        localStorage.setItem(databaseName,JSON.stringify(getDB));
+        localStorage.setItem(ldbName,JSON.stringify(test))
     }
+}
 
-    if(e.target.id == "addDone")
-    {
-        newDiv = document.createElement("p");
-        newDiv.className = "newDiv";
-        newDiv.id = getDB.length;
-        newDiv.contentEditable = "true";
-        done.appendChild(newDiv);
-
-        
-        getDB.push(
-            {
-                title: "done",
-                text: "",
-                index: getDB.length,
-                delete: false
-            }
-        );
-        
-        localStorage.setItem(databaseName,JSON.stringify(getDB));
-    }
-});
-
-document.addEventListener("dblclick",(e) =>
+function loadItems()
 {
-    if(e.target.className == "newDiv")
+    todo.innerText = ""
+    done.innerText = ""
+
+    let setID = 0
+
+    test.forEach((e) =>
     {
-        getDB.forEach((event,index) =>
+        let frame = document.createElement("p")
+        frame.className = "frame"
+
+        let checkBox = document.createElement("INPUT")
+        let text = document.createElement("p")
+        let label = document.createElement("label")
+
+        if(e.checked == true)
         {
-            if(e.target.id == event.index)
-            {
-                event.delete = true;
-            }
-        });
+            text.id = "text"
+            text.className = "text"
+            text.contentEditable = "false"
+            text.disabled = "true"
+            text.innerText = e.text
+            text.count = setID
+            text.style.textDecorationLine = "line-through"
+            text.style.color = "#CCCCCC"
 
-        localStorage.setItem(databaseName,JSON.stringify(getDB));
+            frame.append(text)
+            done.append(frame)
+        }
+        else if(e.checked == false)
+        {
+            checkBox.type = "checkbox"
+            checkBox.id = "checkbox"
+            checkBox.name = "checkbox"
+            checkBox.className = "checkbox"
+            checkBox.value = "test"
+            checkBox.count = setID
 
-        rm(e.target);
-    }
-});
+            text.id = "text"
+            text.className = "text"
+            text.contentEditable = "true"
+            text.innerText = e.text
+            text.count = setID
+
+            label.for = "checkbox"
+            label.innerHTML = "&#9851;"
+
+            frame.append(checkBox)
+            frame.append(label)
+            frame.append(text)
+            todo.append(frame)
+        }
+
+        setID += 1
+    })
+}
 
 document.addEventListener("keyup",(e) =>
 {
-    if(e.target.className == "newDiv")
+    if(e.target.id == "text")
     {
-        let getInnerText = e.target.innerText;
-        let getIndex = e.target.id;
-
-        getDB.forEach((event,index) =>
-        {
-            if(getIndex == event.index)
-            {
-                event.text = getInnerText;
-            }
-        });
-        
-        localStorage.setItem(databaseName,JSON.stringify(getDB));
-    }
-});
-
-window.addEventListener("load",(e) =>
-{
-    getDB.forEach((event) =>
-    {
-        newDiv = document.createElement("p");
-        newDiv.className = "newDiv";
-        newDiv.id = event.index;
-        newDiv.innerText = event.text;
-        newDiv.contentEditable = "true";
-
-        if(event.title == "todo")
-        {
-            todo.appendChild(newDiv);
-        }
-
-        if(event.title == "doing")
-        {
-            doing.appendChild(newDiv);
-        }
-
-        if(event.title == "done")
-        {
-            done.appendChild(newDiv);
-        }
-    });
-});
-
-function rm(target)
-{
-    getDB.forEach((event,index) =>
-    {
-        if(event.delete == true)
-        {
-            getDB.splice(index,1);
-        }
-    });
-
-    localStorage.setItem(databaseName,JSON.stringify(getDB));
-
-    target.remove();
-}
-
-backup.addEventListener("click",() =>
-{
-    const dataJson = JSON.stringify(getDB);
-    const blob = new Blob([dataJson], { type: "application/json" });
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "backup.json";
-    a.click();
-    URL.revokeObjectURL(url);
-});
-
-restore.addEventListener("change",() =>
-{
-	let file = restore.files[0];
-
-    if(file)
-    {
-        let reader = new FileReader();
-        
-        reader.addEventListener("load",(e) =>
-        {
-            try
-            {
-                JSON.parse(e.target.result).forEach((event) =>
-                {
-                    getDB.push(event);
-
-                    localStorage.setItem(databaseName,JSON.stringify(getDB));
-                });
-            }
-            catch(error)
-            {
-                console.log("Error loading JSON file.");
-            }
-        });
-        
-        reader.readAsText(file);
+        test[e.target.count].text = e.target.innerText
     }
 
-    location.reload();
-});
+    localStorage.setItem(ldbName,JSON.stringify(test))
+})
+
+document.addEventListener("click",(e) =>
+{
+    if(e.target.id == "checkbox")
+    {
+        if(e.target.checked)
+        {
+            test[e.target.count].checked = true
+
+            localStorage.setItem(ldbName,JSON.stringify(test))
+
+            setTimeout(() =>
+            {
+                loadItems()
+            },100)
+        }
+    }
+})
+
+add.addEventListener("click",(e) =>
+{
+    let obj = {
+        text: "",
+        checked: false
+    }
+
+    setItems(obj)
+
+    loadItems()
+})
+
+remove.addEventListener("click",(e) =>
+{
+    test.filter(x => x.checked === true).forEach(x => test.splice(test.indexOf(x), 1))
+
+    localStorage.setItem(ldbName,JSON.stringify(test))
+
+    loadItems()
+})
+
+window.addEventListener("load",() =>
+{
+    loadItems()
+})

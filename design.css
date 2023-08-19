@@ -1,109 +1,102 @@
-/*
-    https://github.com/lobossl
-*/
-
 body
 {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #eee;
-    padding:0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(255, 255, 255);
     margin:0;
+    padding:15px;
+    border:none;
+    text-align: center;
+}
+
+.father
+{
+    display: flex;
     border:none;
 }
 
-.parent
+.todo
 {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex:1;
 }
 
-.child1
+.done
 {
-    order:1;
     flex:1;
-    border:1px solid #ccc;
-    text-align: center;
-    margin:15px;
-    background-color:#fff;
-    color:#333;
-    border-radius:5px;
-    padding:15px;
-}
-.child2
-{
-    order:2;
-    flex:1;
-    border:1px solid #ccc;
-    text-align: center;
-    margin:15px;
-    background-color:#fff;
-    color:#333;
-    border-radius:5px;
-    padding:15px;
-}
-.child3
-{
-    order:3;
-    flex:1;
-    border:1px solid #ccc;
-    text-align: center;
-    margin:15px;
-    background-color:#fff;
-    color:#333;
-    border-radius:5px;
-    padding:15px;
 }
 
-.newDiv:hover
+.frame
 {
-    border:1px solid #c7a6a6;
+    border:none;
+    margin:15px;
+    outline:none;
+    padding:15px;
+    background-color: #fff;
+    border-top-right-radius: 15px;
+    text-align:right;
+    border-top:6px solid rgb(255, 51, 255);
+}
+
+.checkbox:hover
+{
     cursor: pointer;
 }
-.newDiv
+.checkbox
 {
-    border:1px solid #eee;
-    border-radius:5px;
     padding:15px;
     margin:15px;
-    text-align:left;
     outline:none;
-    color:#999;
+    color:#ff0000;
+}
+.text
+{
+    padding:15px;
+    border:1px solid #eee;
+    border-radius:5px;
+    margin:15px;
+    outline:none;
     word-break:break-word;
-    font-size:12px;
+    background-color: #fff;
+    color:#888;
+    text-align: left;
+    min-height:50px;
 }
 
-.btn:hover
+#add
 {
-    color:#c7a6a6;
+    flex:1;
+    text-align:center;
+    background-color:rgb(204, 255, 0);
 }
+
+#remove
+{
+    flex:1;
+    text-align:center;
+    background-color:rgb(204, 51, 102);
+}
+
+#remove:hover
+{
+    cursor: pointer;
+}
+#add:hover
+{
+    cursor: pointer;
+}
+
 .btn
 {
-    font-weight: 900;
-    background-color:#fff;
-    border:1px solid #eee;
-    border-radius:5px;
+    font-size:50px;
     padding:15px;
-    color:#ccc;
+    border:none;
     margin:15px;
-    text-align:center;
     outline:none;
-    width:50%;
-}
-
-#backup
-{
-    padding:5px;
-}
-
-#restore
-{
-    padding:5px;
+    background-color:#eee;
+    color:#000;
+    border-radius:5px;
 }
 
 .top
 {
-    background-color:#999;
-    padding:15px;
-    color:#fff;
+    display: flex;
 }
