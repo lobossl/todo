@@ -100,3 +100,12 @@ body
 {
     display: flex;
 }
+
+.bottom
+{
+    text-align: left;
+    padding:15px;
+    background-color:#ff0000;
+    color:#fff;
+    margin:15px;
+}
