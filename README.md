@@ -1,6 +1,4 @@
-# https://triohouse.no/
 # TO-DO-LIST
-- localStorage
+# https://triohouse.no/
 
-TODO:
-- Not mobile friendly yet!
+- storing data to localStorage
