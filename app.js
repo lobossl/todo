@@ -41,6 +41,7 @@ function loadItems()
         let frame = document.createElement("p")
         frame.className = "frame"
 
+        let hr = document.createElement("hr")
         let checkBox = document.createElement("INPUT")
         let text = document.createElement("p")
         let label = document.createElement("label")
@@ -50,7 +51,6 @@ function loadItems()
             text.id = "text"
             text.className = "text"
             text.contentEditable = "false"
-            text.disabled = "true"
             text.innerText = e.text
             text.count = setID
             text.style.textDecorationLine = "line-through"
@@ -71,14 +71,23 @@ function loadItems()
             text.id = "text"
             text.className = "text"
             text.contentEditable = "true"
+            text.spellcheck = "false"
             text.innerText = e.text
+            text.type = "text"
+            text.style.borderLeft = "2px dotted #ccc"
+            text.style.borderRight = "2px dotted #ccc"
             text.count = setID
 
+            label.style.fontSize = "16px"
+            label.style.color = "green"
             label.for = "checkbox"
-            label.innerHTML = "&#9851;"
+            label.innerHTML = "Recyle &#9851;" //recycle
+
+            hr.style.border = "1px solid #c025ff"
 
             frame.append(checkBox)
             frame.append(label)
+            frame.append(hr)
             frame.append(text)
             todo.append(frame)
         }
@@ -92,9 +101,9 @@ document.addEventListener("keyup",(e) =>
     if(e.target.id == "text")
     {
         test[e.target.count].text = e.target.innerText
-    }
 
-    localStorage.setItem(ldbName,JSON.stringify(test))
+        localStorage.setItem(ldbName,JSON.stringify(test))
+    }
 })
 
 document.addEventListener("click",(e) =>
@@ -118,13 +127,15 @@ document.addEventListener("click",(e) =>
 add.addEventListener("click",(e) =>
 {
     let obj = {
-        text: "",
+        text: "Example..",
         checked: false
     }
 
     setItems(obj)
 
     loadItems()
+
+    window.scrollTo(0, document.body.scrollHeight);
 })
 
 remove.addEventListener("click",(e) =>

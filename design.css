@@ -4,7 +4,6 @@
 body
 {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: rgb(255, 255, 255);
     margin:0;
     padding:0px;
     border:none;
@@ -14,17 +13,22 @@ body
 .father
 {
     display: flex;
-    border:none;
 }
 
 .todo
 {
-    flex:1;
+    display: flex;
+    flex-wrap: wrap;
+    flex:1 75%;
+    display: inline-block;
 }
 
 .done
 {
-    flex:1;
+    display: flex;
+    flex-wrap: wrap;
+    flex:1 25%;
+    display: inline-block;
 }
 
 .frame
@@ -34,9 +38,12 @@ body
     outline:none;
     padding:15px;
     background-color: #fff;
-    border-top-right-radius: 15px;
+    border-top-right-radius: 10px;
     text-align:right;
-    border-top:6px solid rgb(255, 51, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to top,#c025ff,#3064ff) 1 1%;
+    min-width:100px;
 }
 
 .checkbox:hover
@@ -48,60 +55,74 @@ body
     padding:15px;
     margin:15px;
     outline:none;
-    color:#ff0000;
+    border-bottom:1px solid #eee;
 }
+
 .text
 {
-    padding:15px;
-    border:1px solid #eee;
-    border-radius:5px;
-    margin:15px;
+    padding:5px;
+    margin:5px;
     outline:none;
     word-break:break-word;
     background-color: #fff;
     color:#888;
     text-align: left;
-    min-height:50px;
+}
+
+.btn
+{
+    outline:none;
+    border:none;
+    background-color: #fff;
+}
+
+.top
+{
+    border:none;
+    background-color: #fff;
+    border-bottom: 1px solid #c025ff;
+    padding:15px;
+    color:#ccc;
+    font-size:32px;
 }
 
 #add
 {
-    flex:1;
-    text-align:center;
-    background-color:rgb(204, 255, 0);
+    background-image: url("icons/add.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 90px;
+    height:90px;
+    margin:15px;
+    outline:none;
+    border:1px solid #eee;
+    border-radius:50%;
+    display: inline-block;
 }
 
 #remove
 {
-    flex:1;
-    text-align:center;
-    background-color:rgb(204, 51, 102);
+    background-image: url("icons/remove.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 90px;
+    height:90px;
+    margin:15px;
+    outline:none;
+    border:1px solid #eee;
+    border-radius:50%;
+    display: inline-block;
 }
 
 #remove:hover
 {
     cursor: pointer;
+    border:1px solid orange;
 }
 #add:hover
 {
     cursor: pointer;
-}
-
-.btn
-{
-    font-size:50px;
-    padding:15px;
-    border:none;
-    margin:15px;
-    outline:none;
-    background-color:#eee;
-    color:#000;
-    border-radius:5px;
-}
-
-.top
-{
-    display: flex;
+    border:1px solid greenyellow;
 }
 
 .bottom
