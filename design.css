@@ -6,7 +6,7 @@ body
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: rgb(255, 255, 255);
     margin:0;
-    padding:15px;
+    padding:0px;
     border:none;
     text-align: center;
 }
@@ -110,5 +110,7 @@ body
     padding:15px;
     background-color:#ff0000;
     color:#fff;
-    margin:15px;
+    margin:0px;
+    border:none;
+    font-weight: bold;
 }
