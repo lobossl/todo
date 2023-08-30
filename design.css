@@ -6,7 +6,11 @@ body
     border: none;
     text-align: center;
 }
-
+#restore:hover
+{
+    rotate: 180deg;
+    transition-duration: 3s;
+}
 #restore
 {
     background-image: url("icons/restore.png");
@@ -20,6 +24,14 @@ body
     border:1px solid #eee;
     border-radius:50%;
     display: inline-block;
+    
+    rotate: 0deg;
+    transition-duration: 1s;
+}
+#download:hover
+{
+    rotate: 180deg;
+    transition-duration: 3s;
 }
 #download
 {
@@ -34,6 +46,14 @@ body
     border:1px solid #eee;
     border-radius:50%;
     display: inline-block;
+    
+    rotate: 0deg;
+    transition-duration: 1s;
+}
+#add:hover
+{
+    rotate: 180deg;
+    transition-duration: 3s;
 }
 #add
 {
@@ -48,8 +68,15 @@ body
     border:1px solid #eee;
     border-radius:50%;
     display: inline-block;
+    
+    rotate: 0deg;
+    transition-duration: 1s;
 }
-
+#remove:hover
+{
+    rotate: 180deg;
+    transition-duration: 3s;
+}
 #remove
 {
     background-image: url("icons/remove.png");
@@ -63,6 +90,9 @@ body
     border:1px solid #eee;
     border-radius:50%;
     display: inline-block;
+    
+    rotate: 0deg;
+    transition-duration: 1s;
 }
 
 #frame
