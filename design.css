@@ -6,54 +6,11 @@ body
     border: none;
     text-align: center;
 }
-#restore:hover
-{
-    rotate: 180deg;
-    transition-duration: 3s;
-}
-#restore
-{
-    background-image: url("icons/restore.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #fff;
-    width: 90px;
-    height:90px;
-    margin:15px;
-    outline:none;
-    border:1px solid #eee;
-    border-radius:50%;
-    display: inline-block;
-    
-    rotate: 0deg;
-    transition-duration: 1s;
-}
-#download:hover
-{
-    rotate: 180deg;
-    transition-duration: 3s;
-}
-#download
-{
-    background-image: url("icons/download.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #fff;
-    width: 90px;
-    height:90px;
-    margin:15px;
-    outline:none;
-    border:1px solid #eee;
-    border-radius:50%;
-    display: inline-block;
-    
-    rotate: 0deg;
-    transition-duration: 1s;
-}
+
 #add:hover
 {
     rotate: 180deg;
-    transition-duration: 3s;
+    transition-duration: 4s;
 }
 #add
 {
@@ -75,7 +32,7 @@ body
 #remove:hover
 {
     rotate: 180deg;
-    transition-duration: 3s;
+    transition-duration: 4s;
 }
 #remove
 {
@@ -133,6 +90,7 @@ body
     border:1px solid #eee;
     flex:1%;
     margin:15px;
+    border-radius:15px;
 }
 
 #done
@@ -140,6 +98,7 @@ body
     border:1px solid #eee;
     flex:1;
     margin:15px;
+    border-radius:15px;
 }
 
 #todo > p
@@ -167,4 +126,31 @@ h3
     color:#fff;
     margin:auto;
     padding:15px;
+}
+
+/* 
+    Drop-Down
+*/
+details{
+    margin:5px;
+    position: absolute;
+    top:0;
+    left:0;
+
+    padding:15px;
+    display:inline;
+    border:1px solid #999;
+    cursor:pointer;
+    background-color:#eee;
+    color:#555;
+}
+details[open]{
+    padding-bottom:5px;
+}
+details > p{
+    text-align:center;
+    padding:5px;
+}
+details > p:hover{
+    background-color:#ccc;
 }
