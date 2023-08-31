@@ -3,24 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <title>THE TODO LIST - https://triohouse.no https://thetodolist.eu</title>
-        <link rel="stylesheet" href="design.css?v=3.1">
+        <link rel="stylesheet" href="styles.css?v=31082023">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <div class="top">
-            <button id="add" class="btn"></button>
-            <button id="remove" class="btn"></button>
+    	<div>
+		<div class="banner">TheToDoList</div>
+        	<details id="details">
+        		<summary>Menu</summary>
+        	    <p id="create" class="create">Create NEW</p>
+        	    <p id="restore" class="restore">Restore</p>
+        	    <p id="backup" class="backup">Backup</p>
+        	    <p id="clear" class="clear">Delete ALL</p>
+        	</details>
         </div>
-        <div id="container" class="container">
-            <div id="todo" class="todo"></div>
-            <div id="done" class="done"></div>
-        </div>
-        <p><details>
-            <summary>Settings</summary>
-            <p id="restore">📂Restore</p>
-            <p id="download">💾Backup</p>
-        </details></p>
-        <small>Coded by LoboSSL</small>
-        <script src="app.js?v=3.1" type="text/javascript"></script>
+    	<div id="main" class="main"></div>
+	<pre>&copy; 2023 Lobo Design</pre>
+        <script src="./app.js?v=31082023" type="module"></script>
     </body>
 </html>

@@ -1,187 +1,162 @@
-let ldbName = "todo"
+import { database } from "./modules/lobo.js"
 
-let todo = document.getElementById("todo")
-let done = document.getElementById("done")
-let add = document.getElementById("add")
-let remove = document.getElementById("remove")
-let download = document.getElementById("download")
-let restore = document.getElementById("restore")
+let db = new database("lobo")
 
-let getOBJ = JSON.parse(localStorage.getItem(ldbName)) || []
+window.addEventListener("load",() =>{
+	reload()
+})
 
-function setItems(e)
-{
-    if(getOBJ === null)
-    {
-        getOBJ = []
+document.getElementById("create").addEventListener("click",() =>{
+	db.save({
+      		id: "",
+      		date: setDate(),
+      		text: ""
+    	})
 
-        getOBJ.push(e)
+    	reload()
+	document.getElementById("details").open = false
+})
 
-        localStorage.setItem(ldbName,JSON.stringify(getOBJ))
-    }
-    else
-    {
-        getOBJ.push(e)
+document.getElementById("restore").addEventListener("click",() =>{
+	const input = document.createElement('input')
+    	input.type = 'file'
 
-        localStorage.setItem(ldbName,JSON.stringify(getOBJ))
-    }
+    	input.addEventListener('change',(event) =>
+    	{
+        	const file = event.target.files[0]
+
+        	if(file)
+        	{
+            		const reader = new FileReader()
+
+            		reader.onload = function(event)
+            		{
+                		const jsonContent = event.target.result
+
+                		db.restore(jsonContent)
+
+                		location.reload()
+            		}
+
+            		reader.readAsText(file)
+        	}
+    	})
+
+    	input.click()
+
+    	document.getElementById("details").open = false
+})
+
+document.getElementById("backup").addEventListener("click",async () =>{
+	const jsonData = await db.backup()
+
+	const jsonString = jsonData
+	const blob = new Blob([jsonString], { type: 'application/json' })
+
+    	let link = document.createElement('a')
+
+    	link.href = URL.createObjectURL(blob)
+    	link.download = "TheToDoListBackup.json"
+
+    	link.click()
+
+	document.getElementById("details").open = false
+})
+
+document.getElementById("clear").addEventListener("click",() =>{
+	db.clearAll()
+
+	location.reload()
+
+	document.getElementById("details").open = false
+})
+
+document.addEventListener("click",(e) =>{
+	if(e.target.id == "createRemove")
+	{
+		try
+		{
+			db.load().splice(e.target.setId,1)
+			db.saveAll()
+			reload()
+		}
+		catch(err)
+		{
+			console.log("error: createRemove failed")
+		}
+	}
+})
+
+document.addEventListener("keyup",(e) =>{
+	if(e.target.id == "createText")
+	{
+		db.load().forEach((get) =>
+		{
+			if(get.id == e.target.setId)
+			{
+				get.text = e.target.innerText
+				get.date = setDate()
+			}
+		})
+
+		db.saveAll()
+	}
+})
+
+function reload(){
+	document.getElementById("main").innerText = ""
+
+    	try
+    	{
+        	db.load().forEach((e,index) =>
+        	{
+            		let createBox = document.createElement("p")
+            		createBox.id = "createBox"
+            		createBox.className = "createBox"
+
+            		let createText = document.createElement("p")
+            		createText.id = "createText"
+            		createText.className = "createText"
+            		createText.contentEditable = "true"
+            		createText.setId = index
+            		createText.innerText = e.text
+            		e.id = index
+
+            		let createDate = document.createElement("div")
+            		createDate.id = "createDate"
+            		createDate.className = "createDate"
+            		createDate.innerText = e.date
+
+            		let createRemove = document.createElement("div")
+            		createRemove.id = "createRemove"
+            		createRemove.className = "createRemove"
+            		createRemove.innerText = "click to delete #" + index
+            		createRemove.setId = index
+
+			document.getElementById("main").append(createBox)
+			createBox.append(createDate)
+			createBox.append(createRemove)
+			createBox.append(createText)
+        	})
+    	}
+    	catch(err)
+    	{
+        	console.log("error: no database found")
+    	}
 }
 
-download.addEventListener("click",() =>
-{
-    let blob = new Blob([JSON.stringify(getOBJ)], { type: 'application/json' })
+function setDate(){
+	const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+	const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
-    let link = document.createElement('a')
+	const d = new Date()
 
-    link.href = URL.createObjectURL(blob)
-    link.download = "backup.json"
+	let name = months[d.getMonth()]
+	let year = d.getFullYear()
+	let day = days[d.getDay()]
+	let month = d.getDate()
 
-    link.click();
-})
+	let final = day + " " + month + ". " + name + " " + year
 
-function loadItems()
-{
-    todo.innerHTML = "<h3>TODO</h3>"
-    done.innerHTML = "<h3>DONE</h3>"
-
-    let setID = 0
-
-    getOBJ.forEach((e) =>
-    {
-        let frame = document.createElement("p")
-        frame.className = "frame"
-        frame.id = "frame"
-
-        let checkBox = document.createElement("INPUT")
-        let text = document.createElement("p")
-        let insideBox = document.createElement("div")
-
-        if(e.checked == true)
-        {
-            text.id = "text"
-            text.className = "text"
-            text.contentEditable = "false"
-            text.innerText = e.text
-            text.count = setID
-            text.style.textDecorationLine = "line-through"
-            text.style.color = "#CCCCCC"
-
-            frame.append(text)
-            done.append(frame)
-        }
-        else if(e.checked == false)
-        {
-            checkBox.type = "checkbox"
-            checkBox.id = "checkbox"
-            checkBox.name = "checkbox"
-            checkBox.className = "checkbox"
-            checkBox.count = setID
-
-            text.id = "text"
-            text.className = "text"
-            text.contentEditable = "true"
-            text.spellcheck = "false"
-            text.innerText = e.text
-            text.type = "text"
-            text.style.borderLeft = "2px dotted #ccc"
-            text.count = setID
-
-            insideBox.id = "insideBox"
-            insideBox.className = "insideBox"
-
-            insideBox.append(text)
-            insideBox.append(checkBox)
-
-            frame.append(insideBox)
-
-            todo.append(frame)
-        }
-
-        setID += 1
-    })
+	return final
 }
-
-document.getElementById('restore').addEventListener('click', function() 
-{
-    const input = document.createElement('input')
-    input.type = 'file'
-
-    input.addEventListener('change', function(event)
-    {
-        const file = event.target.files[0]
-
-        if(file)
-        {
-            const reader = new FileReader()
-
-            reader.onload = function(event)
-            {
-                const jsonContent = event.target.result
-
-                localStorage.setItem(ldbName,jsonContent)
-
-                location.reload()
-            };
-
-            reader.readAsText(file)
-        }
-    })
-
-    input.click()
-})
-
-document.addEventListener("keyup",(e) =>
-{
-    if(e.target.id == "text")
-    {
-        getOBJ[e.target.count].text = e.target.innerText
-
-        localStorage.setItem(ldbName,JSON.stringify(getOBJ))
-    }
-})
-
-document.addEventListener("click",(e) =>
-{
-    if(e.target.id == "checkbox")
-    {
-        if(e.target.checked)
-        {
-            getOBJ[e.target.count].checked = true
-
-            localStorage.setItem(ldbName,JSON.stringify(getOBJ))
-
-            setTimeout(() =>
-            {
-                loadItems()
-            },100)
-        }
-    }
-})
-
-add.addEventListener("click",(e) =>
-{
-    let obj = {
-        text: "Text..",
-        checked: false
-    }
-
-    setItems(obj)
-
-    loadItems()
-
-    window.scrollTo(0, document.body.scrollHeight);
-})
-
-remove.addEventListener("click",(e) =>
-{
-    getOBJ.filter(x => x.checked === true).forEach(x => getOBJ.splice(getOBJ.indexOf(x), 1))
-
-    localStorage.setItem(ldbName,JSON.stringify(getOBJ))
-
-    loadItems()
-})
-
-window.addEventListener("load",() =>
-{
-    loadItems()
-})
