@@ -1,13 +1,16 @@
+//Hey you like to check my source code? well, enjoy =)
 import { database } from "./modules/lobo.js"
 
 let db = new database("lobo")
 
 window.addEventListener("load",() =>{
 	reload()
+	document.documentElement.spellcheck = false;
 })
 
 document.getElementById("create").addEventListener("click",() =>{
 	db.save({
+		color: "",
       		id: "",
       		date: setDate(),
       		text: ""
@@ -72,6 +75,19 @@ document.getElementById("clear").addEventListener("click",() =>{
 })
 
 document.addEventListener("click",(e) =>{
+	if(e.target.id == "createTagged")
+	{
+		db.load().forEach((get) =>
+		{
+			if(get.id == e.target.setId)
+			{
+				get.color = "#f37636"
+				db.saveAll()
+				reload()
+			}
+		})
+	}
+
 	if(e.target.id == "createRemove")
 	{
 		try
@@ -114,28 +130,42 @@ function reload(){
             		createBox.id = "createBox"
             		createBox.className = "createBox"
 
+			let createButtons = document.createElement("div")
+			createButtons.className = "createButtons"
+
+			let createTagged = document.createElement("button")
+			createTagged.id = "createTagged"
+			createTagged.className = "btn"
+			createTagged.innerText = "TAG"
+			createTagged.setId = index
+
             		let createText = document.createElement("p")
+			createText.spellcheck = false
             		createText.id = "createText"
             		createText.className = "createText"
             		createText.contentEditable = "true"
             		createText.setId = index
             		createText.innerText = e.text
             		e.id = index
+			createText.style.borderColor = e.color
+			createText.style.color = e.color
 
             		let createDate = document.createElement("div")
             		createDate.id = "createDate"
             		createDate.className = "createDate"
             		createDate.innerText = e.date
 
-            		let createRemove = document.createElement("div")
+            		let createRemove = document.createElement("button")
             		createRemove.id = "createRemove"
-            		createRemove.className = "createRemove"
-            		createRemove.innerText = "click to delete #" + index
+            		createRemove.className = "btn"
+            		createRemove.innerText = "DELETE"
             		createRemove.setId = index
 
 			document.getElementById("main").append(createBox)
 			createBox.append(createDate)
-			createBox.append(createRemove)
+			createBox.append(createButtons)
+			createButtons.append(createRemove)
+			createButtons.append(createTagged)
 			createBox.append(createText)
         	})
     	}
