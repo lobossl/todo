@@ -3,7 +3,7 @@ body{
 	font-size:1.2em;
 	margin:0;
 	padding:0;
-	background-color:#ffffff;
+	background-color:#223344;
 }
 
 /* 
@@ -27,7 +27,7 @@ details > p{
     	padding:5px;
 }
 details > p:hover{
-    	background-color:#556677;
+	opacity:0.8;
     	color:#fff;
 }
 /*
@@ -37,6 +37,7 @@ details > p:hover{
 	flex:1fr;
 	min-height:100px;
 	background-color:#111;
+	border-radius:6px;
 }
 .main{
 	display:flex;
@@ -46,9 +47,9 @@ details > p:hover{
 	flex-wrap: wrap;
 }
 .createDate{
-	background-color:#222;
-	padding:9px;
-	color:#eee;
+	background-color:#445566;
+	padding:5px;
+	color:#999;
 	text-align:center;
 }
 .createText{
@@ -86,28 +87,22 @@ details > p:hover{
 	font-size:2.1em;
 	color:#ffffff;
 	font-weight: 900;
-	background: linear-gradient(0.25turn,#ab2aff,#000000,#f37636);
-}
-pre
-{
-	text-align:center;
-	font-size:1.5em;
-	color:#b716e3;
-	opacity:0.3;
+	background: linear-gradient(0.25turn,#f37636,#000000,#f37636);
 }
 .btn:hover
 {
-	background-color:orange;
+	background-color:#556677;
 }
 .btn
 {
+        font-weight: 900;
 	text-align:center;
 	margin:5px;
 	padding:5px;
 	border:none;
 	outline:none;
-	color:#fff;
-	background-color:green;
+	color:#999;
+	background-color:#445566;
 	border-radius:3px;
 }
 .createButtons
@@ -115,3 +110,12 @@ pre
 	text-align:center;
 }
 	
+center
+{
+	color:#999;
+}
+
+a
+{
+	color:#999;
+}

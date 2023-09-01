@@ -13,7 +13,8 @@ document.getElementById("create").addEventListener("click",() =>{
 		color: "",
       		id: "",
       		date: setDate(),
-      		text: ""
+      		text: "",
+		tagged: false
     	})
 
     	reload()
@@ -81,7 +82,16 @@ document.addEventListener("click",(e) =>{
 		{
 			if(get.id == e.target.setId)
 			{
-				get.color = "#f37636"
+				if(get.tagged == false)
+				{
+					get.color = "#f37636"
+					get.tagged = true
+				}
+				else
+				{
+					get.color = "#444"
+					get.tagged = false
+				}
 				db.saveAll()
 				reload()
 			}
@@ -148,7 +158,6 @@ function reload(){
             		createText.innerText = e.text
             		e.id = index
 			createText.style.borderColor = e.color
-			createText.style.color = e.color
 
             		let createDate = document.createElement("div")
             		createDate.id = "createDate"
