@@ -1,24 +1,19 @@
 body{
-        font-family:Verdana, sans-serif;
-	font-size:1.2em;
+    font-family:'Courier New', Courier, monospace;
+	letter-spacing: 1px;
 	margin:0;
 	padding:0;
-	background-color:#223344;
+	background-color:#092035;
 }
-
-/* 
-    Drop-Down
-*/
 details{
-	background-color:#f37636;
+	background-color:#0f3558;
 	text-align:center;
-    	padding:5px;
-    	border:none;
-    	border-bottom:6px solid #f37636;
-    	cursor:pointer;
-    	color:#fff;
-    	user-select: none;
+	padding:15px;
+	cursor:pointer;
+	color:#fff;
+	user-select: none;
 	font-weight: 900;
+    font-size:1.5em;
 }
 details[open]{
     	padding-bottom:5px;
@@ -27,94 +22,55 @@ details > p{
     	padding:5px;
 }
 details > p:hover{
-	opacity:0.8;
-    	color:#fff;
+	color:#ccc;
 }
-/*
-	box
-*/
+.main
+{
+	background-color:#092035;
+	padding:15px;
+}
 .createBox{
-	flex:1fr;
-	min-height:100px;
-	background-color:#111;
-	border-radius:6px;
+	margin:25px auto;
+	border-radius: 25px;
+	width:75%;
+	display: flex;
+	padding:15px;
+	background-color:#0a263e;
 }
-.main{
-	display:flex;
-	gap:3.33%;
-	align-items: center;
-  	justify-content: center;
-	flex-wrap: wrap;
+.left{
+	flex:1 99%;
+	text-align: center;
 }
-.createDate{
-	background-color:#445566;
-	padding:5px;
-	color:#999;
-	text-align:center;
+.right{
+	flex:1 1%;
+	text-align: center;
 }
 .createText{
-	height:auto;
-	width:auto;
-	font-size:14px;
+	letter-spacing:1px;
 	word-break:break-word;
 	outline:none;
-	background-color:#222;
-	border:1px solid #444;
 	color:#fff;
-	padding:15px;
 	text-align:left;
-	margin:9px;
-}
-.createRemove:hover
-{
-	color:#ff0000;
-}
-.createRemove{
-	cursor:pointer;
-	background-color:#000;
-	color:#5f2c12;
-	text-align:center;
-	font-size:0.8em;
-}
-/*
-	BANNER
-*/
-.banner
-{
-	padding:15px;
-	background-color:#556677;
-	text-align:center;
-	font-size:2.1em;
-	color:#ffffff;
-	font-weight: 900;
-	background: linear-gradient(0.25turn,#f37636,#000000,#f37636);
-}
-.btn:hover
-{
-	background-color:#556677;
+	background-color: #0a263e;
 }
 .btn
 {
-        font-weight: 900;
 	text-align:center;
-	margin:5px;
-	padding:5px;
-	border:none;
+	border-radius:50%;
+	height:32px;
+	width:32px;
+	border:2px solid #0f3558;
 	outline:none;
-	color:#999;
-	background-color:#445566;
-	border-radius:3px;
+	color:#777;
+	cursor: pointer;
+	background-color: #092035;
 }
-.createButtons
-{
-	text-align:center;
-}
-	
-center
+pre
 {
 	color:#999;
+	text-align: center;
+	padding:32px;
 }
-
 a
 {
 	color:#999;
