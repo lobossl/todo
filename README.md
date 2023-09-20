@@ -1,6 +1,6 @@
 # THE TO DO LIST
 
-# http://thetodolist.eu/
+# https://thetodolist.eu/
 
 - storing data to localStorage
 - JSON backup / restore
