@@ -1,4 +1,7 @@
-# TO-DO-LIST
-# https://triohouse.no/
+# THE TO DO LIST
 
-- storing data to localStorage
+# https://triohouse.no/
+# http://thetodolist.eu/
+# http://thetodolist.ddns.net/
+
+- storing data to localStorage (Browser)
