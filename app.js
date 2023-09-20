@@ -74,8 +74,6 @@ document.addEventListener("dblclick",(e) =>
 		db.saveAll()
 		load()
 	}
-
-	load()
 })
 
 submit.addEventListener("click",(e) =>
