@@ -1,7 +1,7 @@
 # THE TO DO LIST
 
-# https://triohouse.no/
 # http://thetodolist.eu/
-# http://thetodolist.ddns.net/
 
-- storing data to localStorage (Browser)
+- storing data to localStorage
+- JSON backup / restore
+- Works on all browsers
