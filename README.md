@@ -2,6 +2,6 @@
 
 # https://thetodolist.eu/
 
-- storing data to localStorage
-- JSON backup / restore (under arbeid!!!!!!!!!!!)
+- A simple to-do-list in vanilla javascript
+- Storing data to localStorage
 - Works on all browsers
