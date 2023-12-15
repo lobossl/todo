@@ -1,5 +1,5 @@
 /*
-	//1.0.4
+	//1.0.5
 */
 
 class STORAGE {
@@ -257,7 +257,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
-    //forceHTTPS()
+    forceHTTPS()
 
     onLoadPage()
 })
