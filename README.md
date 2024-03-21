@@ -1,7 +1,4 @@
-# THE TO DO LIST
-
-# https://thetodolist.eu/
-# http://lobossl.github.io
+# THE TO DO LIS
 
 - A simple To-Do-List in vanilla javascript
 - Using localStorage as database
